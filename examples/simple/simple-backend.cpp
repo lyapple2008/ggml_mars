@@ -134,6 +134,10 @@ struct ggml_tensor * compute(const simple_model & model, ggml_gallocr_t allocr) 
 
     ggml_backend_graph_compute(model.backend, gf);
 
+    // Print the cgraph
+    ggml_graph_print(gf);
+    ggml_graph_dump_dot(gf, NULL, "debug.dot");
+
     // in this case, the output tensor is the last one in the graph
     return ggml_graph_node(gf, -1);
 }
